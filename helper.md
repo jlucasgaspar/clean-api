@@ -6,3 +6,4 @@ git l = git log --pretty=format:'%C(blue)%h %C(red)%d %C(white)%s - %C(cyan)%cn,
 # Ctrl C + Ctrl V
 feat: ensure SignUpController returns an error if no name is provided
 test: ensure SignUpController returns an error if no name is provided
+refactor: move duplicated code to a helper method
