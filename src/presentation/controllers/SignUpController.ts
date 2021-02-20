@@ -1,5 +1,7 @@
+import { HttpRequest, HttpResponse } from '../protocols/http'
+
 export class SignUpController {
-    public async handle(httpRequest: any): Promise<any> {
+    public handle(httpRequest: HttpRequest): HttpResponse {
         if (!httpRequest.body.name) {
             return {
                 statusCode: 400,
