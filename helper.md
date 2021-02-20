@@ -5,3 +5,4 @@ git l = git log --pretty=format:'%C(blue)%h %C(red)%d %C(white)%s - %C(cyan)%cn,
 
 # Ctrl C + Ctrl V
 feat: ensure SignUpController returns 400 if no name is provided
+test: ensure SignUpController returns 400 if no name is provided
