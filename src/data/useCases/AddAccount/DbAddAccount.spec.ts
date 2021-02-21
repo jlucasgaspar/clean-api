@@ -1,4 +1,10 @@
+import { Encrypter } from './../protocols/Encrypter'
 import { DbAddAccount } from './DbAddAccount'
+
+interface SutTypes {
+    sut: DbAddAccount
+    encrypterStub: Encrypter
+}
 
 const makeEncrypterStub = () => {
     class EncrypterStub {
@@ -10,7 +16,7 @@ const makeEncrypterStub = () => {
     return new EncrypterStub()
 }
 
-const makeSut = () => {
+const makeSut = (): SutTypes => {
     const encrypterStub = makeEncrypterStub()
 
     const sut = new DbAddAccount(encrypterStub)
