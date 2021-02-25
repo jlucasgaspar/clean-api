@@ -1,4 +1,4 @@
-module.exports = {
+/* module.exports = {
     mongodbMemoryServerOptions: {
         instance: {
             dbName: 'jest'
@@ -8,5 +8,16 @@ module.exports = {
             skipMD5: true
         },
         autoStart: false
+    }
+} */
+
+module.exports = {
+    mongodbMemoryServerOptions: {
+        binary: {
+            version: '4.4.1',
+            skipMD5: true
+        },
+        autoStart: false,
+        instance: {}
     }
 }
