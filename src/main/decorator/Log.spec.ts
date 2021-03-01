@@ -109,6 +109,6 @@ describe('LogController Decorator', () => {
 
         await sut.handle(httpRequest)
 
-        expect(logSpy).toHaveBeenCalledWith(fakeError.stack)
+        expect(logSpy).toHaveBeenCalledWith(fakeError.stack) // 'any_stack'
     })
 })
