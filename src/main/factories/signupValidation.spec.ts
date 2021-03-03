@@ -1,11 +1,22 @@
 import { CompareFieldsValidation } from '../../presentation/helpers/validators/compareFieldsValidation'
+import { EmailValidation } from '../../presentation/helpers/validators/emailValidation'
 import { RequiredFieldValidation } from '../../presentation/helpers/validators/requiredFieldValidation'
 import { Validation } from '../../presentation/helpers/validators/Validation'
 import { ValidationComposite } from '../../presentation/helpers/validators/validationComposite'
+import { EmailValidator } from '../../presentation/protocols/EmailValidator'
 import { makeSignUpValidation } from './signupValidation'
 
-//mesmo path do ValidationComposite
-jest.mock('../../presentation/helpers/validators/validationComposite')
+jest.mock('../../presentation/helpers/validators/validationComposite') //mesmo path do ValidationComposite
+
+const makeEmailValidatorStub = (): EmailValidator => {
+    class EmailValidatorStub implements EmailValidator {
+        isValid(email: string): boolean {
+            return true
+        }
+    }
+
+    return new EmailValidatorStub()
+}
 
 describe('SignUpValidation Factory', () => {
     test('Should call ValidationComposite with all validations', () => {
@@ -18,6 +29,8 @@ describe('SignUpValidation Factory', () => {
         }
 
         validations.push(new CompareFieldsValidation('password', 'passwordConfirmarion'))
+
+        validations.push(new EmailValidation('email', makeEmailValidatorStub()))
 
         expect(ValidationComposite).toHaveBeenCalledWith(validations)
     })

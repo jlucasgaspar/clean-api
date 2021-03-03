@@ -1,4 +1,4 @@
-import { InvalidParamError, MissingParamError } from '../../errors'
+import { InvalidParamError } from '../../errors'
 import { Validation } from './Validation'
 import { EmailValidator } from '../../protocols/EmailValidator'
 
@@ -8,7 +8,6 @@ export class EmailValidation implements Validation {
 
     constructor (fieldName: string, emailValidator: EmailValidator) {
         this.fieldName = fieldName
-        this.emailValidator = emailValidator
         this.emailValidator = emailValidator
     }
 
