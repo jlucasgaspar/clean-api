@@ -2,7 +2,7 @@ import { SignUpController } from './SignUpController'
 import { EmailValidator, AccountModel, AddAccount, AddAccountModel } from './SignUpProtocols'
 import { MissingParamError, InvalidParamError, ServerError } from '../../errors'
 import { HttpRequest } from '../../protocols'
-import { ok, serverError, badRequest } from '../../helpers'
+import { ok, badRequest } from '../../helpers'
 import { Validation } from '../../helpers/validators/Validation'
 
 interface SutTypes {
@@ -17,7 +17,7 @@ const makeSut = (): SutTypes => {
     const addAcountStub = makeAddAcountStub()
     const validationStub = makeValidatonStub()
 
-    const sut = new SignUpController(emailValidatorStub, addAcountStub, validationStub)
+    const sut = new SignUpController(addAcountStub, validationStub)
 
     return { sut, emailValidatorStub, addAcountStub, validationStub }
 }
