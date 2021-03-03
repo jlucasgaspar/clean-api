@@ -9,6 +9,7 @@ export class EmailValidation implements Validation {
     constructor (fieldName: string, emailValidator: EmailValidator) {
         this.fieldName = fieldName
         this.emailValidator = emailValidator
+        this.emailValidator = emailValidator
     }
 
     validate(input: any): Error {
