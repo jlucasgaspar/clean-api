@@ -76,27 +76,6 @@ const makeFakeAccount = (account): AccountModel => ({
 })
 
 describe('SignUp Controller', () => {
-    test('should return 400 if an invalid mail is provided', async () => {
-        const { sut, emailValidatorStub } = makeSut()
-
-        jest.spyOn(emailValidatorStub, 'isValid').mockReturnValueOnce(false)
-
-        const httpRequest = {
-            body: {
-                name: 'any_name',
-                email: 'invalid_email',
-                password: 'any_password',
-                passwordConfirmation: 'any_password'
-            }
-        }
-
-        const httpResponse = await sut.handle(httpRequest)
-        
-        // expect(httpResponse).toEqual(badRequest(new InvalidParamError('email'))) é igual a:
-        expect(httpResponse.statusCode).toBe(400)
-        expect(httpResponse.body).toEqual(new InvalidParamError('email'))
-    })
-
     test('should call EmailValidator with correct e-mail', async () => {
         const { sut, emailValidatorStub } = makeSut()
 
@@ -123,22 +102,6 @@ describe('SignUp Controller', () => {
         //expect(httpResponse).toEqual(serverError(new ServerError(null)))
         expect(httpResponse.statusCode).toBe(500)
         expect(httpResponse.body).toEqual(new ServerError(null))
-    })
-
-    test('should call AddAccount with correct values', async () => {
-        const { sut, addAcountStub } = makeSut()
-
-        const addSpy = jest.spyOn(addAcountStub, 'add')
-
-        const httpRequest = makeFakeRequest()
-
-        await sut.handle(httpRequest)
-        
-        expect(addSpy).toHaveBeenCalledWith({
-            name: httpRequest.body.name,
-            email: httpRequest.body.email,
-            password: httpRequest.body.password
-        })
     })
 
     test('should return 500 if AddAccount throws', async () => {
