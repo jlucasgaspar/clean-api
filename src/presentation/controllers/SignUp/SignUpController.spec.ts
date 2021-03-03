@@ -76,25 +76,6 @@ const makeFakeAccount = (account): AccountModel => ({
 })
 
 describe('SignUp Controller', () => {
-    test('should return 400 if no password confirmation does not match with password', async () => {
-        const { sut } = makeSut()
-
-        const httpRequest = {
-            body: {
-                name: 'any_name',
-                email: 'any_email@mail.com',
-                password: 'any_password',
-                passwordConfirmation: 'invalid_password'
-            }
-        }
-
-        const httpResponse = await sut.handle(httpRequest)
-        
-        // expect(httpResponse).toEqual(badRequest(new InvalidParamError('passwordConfirmation'))) é igual a:
-        expect(httpResponse.statusCode).toBe(400)
-        expect(httpResponse.body).toEqual(new InvalidParamError('passwordConfirmation'))
-    })
-
     test('should return 400 if an invalid mail is provided', async () => {
         const { sut, emailValidatorStub } = makeSut()
 
