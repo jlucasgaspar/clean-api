@@ -1,5 +1,5 @@
 import { Controller, HttpRequest, HttpResponse } from '../../protocols'
-import { badRequest, serverError } from '../../helpers'
+import { badRequest, serverError, unauthorized } from '../../helpers'
 import { InvalidParamError, MissingParamError } from '../../errors'
 import { EmailValidator } from '../SignUp/SignUpProtocols'
 import { Authentication } from '../../../domain/useCases/Authentication'
@@ -32,6 +32,10 @@ export class LoginController implements Controller {
             }
 
             const token = await this.authentication.auth(email, password)
+
+            if (!token) {
+                return unauthorized()
+            }
         } catch (error) {
             return serverError(error)            
         }
