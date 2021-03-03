@@ -76,7 +76,7 @@ const makeFakeAccount = (account): AccountModel => ({
 })
 
 describe('SignUp Controller', () => {
-    test('should return 400 if no name is provided', async () => {
+    /* test('should return 400 if no name is provided', async () => {
         const { sut } = makeSut()
 
         const httpRequest = {
@@ -148,7 +148,7 @@ describe('SignUp Controller', () => {
         
         expect(httpResponse.statusCode).toBe(400)
         expect(httpResponse.body).toEqual(new MissingParamError('passwordConfirmation'))
-    })
+    }) */
 
     test('should return 400 if no password confirmation does not match with password', async () => {
         const { sut } = makeSut()
