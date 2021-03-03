@@ -76,6 +76,27 @@ const makeFakeAccount = (account): AccountModel => ({
 })
 
 describe('SignUp Controller', () => {
+    test('should return 400 if an invalid mail is provided', async () => {
+        const { sut, emailValidatorStub } = makeSut()
+
+        jest.spyOn(emailValidatorStub, 'isValid').mockReturnValueOnce(false)
+
+        const httpRequest = {
+            body: {
+                name: 'any_name',
+                email: 'invalid_email',
+                password: 'any_password',
+                passwordConfirmation: 'any_password'
+            }
+        }
+
+        const httpResponse = await sut.handle(httpRequest)
+        
+        // expect(httpResponse).toEqual(badRequest(new InvalidParamError('email'))) é igual a:
+        expect(httpResponse.statusCode).toBe(400)
+        expect(httpResponse.body).toEqual(new InvalidParamError('email'))
+    })
+
     test('should call EmailValidator with correct e-mail', async () => {
         const { sut, emailValidatorStub } = makeSut()
 

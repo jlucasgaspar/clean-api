@@ -17,7 +17,7 @@ describe('SignUpValidation Factory', () => {
             validations.push(new RequiredFieldValidation(field))
         }
 
-        validations.push(new CompareFieldsValidation('password', 'passwordConfirmation'))
+        validations.push(new CompareFieldsValidation('password', 'passwordConfirmarion'))
 
         expect(ValidationComposite).toHaveBeenCalledWith(validations)
     })
