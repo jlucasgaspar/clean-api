@@ -4,6 +4,12 @@ import { InvalidParamError, MissingParamError } from '../../errors'
 import { EmailValidator } from '../SignUp/SignUpProtocols'
 import { Authentication } from '../../../domain/useCases/Authentication'
 
+/**
+ * @ATTENTION
+ * Aqui no LoginController, não vou fazer o esquema de validation como no
+ * SignUp Controller, pra poder ver como são as 2 formas no futuro.
+*/
+
 export class LoginController implements Controller {
     private readonly emailValidator: EmailValidator
     private readonly authentication: Authentication
