@@ -1,5 +1,5 @@
-import { UpdateAccessTokenRepository } from './../../../../data/protocols/db/UpdateAccessTokenRepository';
-import { AddAccountRepository } from '../../../../data/protocols/db/AddAccountRepository'
+import { UpdateAccessTokenRepository } from '../../../../data/protocols/db/account/UpdateAccessTokenRepository';
+import { AddAccountRepository } from '../../../../data/protocols/db/account/AddAccountRepository'
 import { AccountModel } from '../../../../domain/models/Account'
 import { AddAccountModel } from '../../../../domain/useCases/AddAccount'
 import { MongoHelper } from '../helpers/mongoHelper'
