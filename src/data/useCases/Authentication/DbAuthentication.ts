@@ -1,26 +1,16 @@
 import { Authentication, AuthModel } from '../../../domain/useCases/Authentication'
 import { HashComparer } from '../../protocols/cryptography/HashComparer'
 import { Encrypter } from '../../protocols/cryptography/Encrypter'
-import { LoadAccountByEmailRepository } from '../../protocols/db/LoadAccountByEmailRepository'
-import { UpdateAccessTokenRepository } from '../../protocols/db/UpdateAccessTokenRepository'
+import { LoadAccountByEmailRepository } from '../../protocols/db/account/LoadAccountByEmailRepository'
+import { UpdateAccessTokenRepository } from '../../protocols/db/account/UpdateAccessTokenRepository'
 
 export class DbAuthentication implements Authentication {
-    private readonly loadAccountByEmailRepository: LoadAccountByEmailRepository
-    private readonly hashComparer: HashComparer
-    private readonly encrypter: Encrypter
-    private readonly updateaccessTokenRepository: UpdateAccessTokenRepository
-
     constructor(
-        loadAccountByEmailRepository: LoadAccountByEmailRepository,
-        hashComparer: HashComparer,
-        encrypter: Encrypter,
-        updateaccessTokenRepository: UpdateAccessTokenRepository
-    ) {
-        this.loadAccountByEmailRepository = loadAccountByEmailRepository
-        this.hashComparer = hashComparer
-        this.encrypter = encrypter
-        this.updateaccessTokenRepository = updateaccessTokenRepository
-    }
+        private readonly loadAccountByEmailRepository: LoadAccountByEmailRepository,
+        private readonly hashComparer: HashComparer,
+        private readonly encrypter: Encrypter,
+        private readonly updateaccessTokenRepository: UpdateAccessTokenRepository
+    ) {}
 
     async auth(authData: AuthModel): Promise<string> {
         const account = await this.loadAccountByEmailRepository.loadByEmail(authData.email)
