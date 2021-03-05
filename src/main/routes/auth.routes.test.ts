@@ -52,5 +52,23 @@ describe('Auth Routes', () => {
                 })
                 .expect(200)
         });
+
+        test('should return 401 if account does not exist', async () => {
+            /* const password = await hash('valid_password', 12) // salt = 12
+
+            await accountCollection.insertOne({
+                name: 'valid_name',
+                email: 'valid_email@mail.com',
+                password: password
+            }) */
+
+            await request(app)
+                .post('/api/login')
+                .send({
+                    email: 'valid_email@mail.com',
+                    password: 'valid_password'
+                })
+                .expect(401)
+        });
     });
 })
