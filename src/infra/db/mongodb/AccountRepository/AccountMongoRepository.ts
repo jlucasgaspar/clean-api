@@ -3,8 +3,9 @@ import { AddAccountRepository } from '../../../../data/protocols/db/account/AddA
 import { AccountModel } from '../../../../domain/models/Account'
 import { AddAccountModel } from '../../../../domain/useCases/AddAccount'
 import { MongoHelper } from '../helpers/mongoHelper'
+import { LoadAccountByEmailRepository } from '../../../../data/protocols/db/account/LoadAccountByEmailRepository';
 
-export class AccountMongoRepository implements AddAccountRepository, UpdateAccessTokenRepository {
+export class AccountMongoRepository implements AddAccountRepository, LoadAccountByEmailRepository, UpdateAccessTokenRepository {
     async add(accountData: AddAccountModel): Promise<AccountModel> {
         const accountCollection = await MongoHelper.getCollection('accounts')
 
