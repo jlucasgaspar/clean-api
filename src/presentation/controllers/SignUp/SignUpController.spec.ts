@@ -2,7 +2,7 @@ import { SignUpController } from './SignUpController'
 import { AccountModel, AddAccount, AddAccountModel } from './SignUpControllerProtocols'
 import { MissingParamError, InvalidParamError, ServerError } from '../../errors'
 import { HttpRequest } from '../../protocols'
-import { ok, badRequest } from '../../helpers'
+import { ok, badRequest, serverError } from '../../helpers'
 import { Validation } from '../../protocols/Validation'
 import { Authentication, AuthModel } from '../../../domain/useCases/Authentication'
 
@@ -140,5 +140,19 @@ describe('SignUp Controller', () => {
         expect(authSpy).toHaveBeenCalledWith({
             email: httpRequest.body.email, password: httpRequest.body.password
         })
+    })
+
+    test('Should return 500 if Authentication throws', async () => {
+        const { sut, authenticationStub } = makeSut()
+
+        jest.spyOn(authenticationStub, 'auth').mockReturnValueOnce(
+            new Promise((resolve, reject) => reject(new Error()))
+        )
+
+        const httpRequest = makeFakeRequest()
+
+        const httpResponse = await sut.handle(httpRequest)
+
+        expect(httpResponse).toEqual(serverError(new Error()))
     })
 })
