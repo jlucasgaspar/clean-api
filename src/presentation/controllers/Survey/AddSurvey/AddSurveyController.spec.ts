@@ -1,8 +1,7 @@
 import { AddSurveyController } from './AddSurveyController'
 import { HttpRequest, Validation } from '../../../protocols'
-import { badRequest, serverError } from '../../../helpers';
+import { badRequest, serverError, noContent } from '../../../helpers';
 import { AddSurvey, AddSurveyModel } from '../../../../domain/useCases/AddSurvey';
-import { rejects } from 'node:assert';
 
 interface SutTypes {
     sut: AddSurveyController
@@ -76,5 +75,12 @@ describe('AddSurvey Controller', () => {
         const httpRequest = makeFakeRequest()
         const httpResponse = await sut.handle(httpRequest)
         expect(httpResponse).toEqual(serverError(new Error()))
+    });
+
+    test('should return 204 on success', async () => {
+        const { sut } = makeSut()
+        const httpRequest = makeFakeRequest()
+        const httpResponse = await sut.handle(httpRequest)
+        expect(httpResponse).toEqual(noContent())
     });
 });
