@@ -3,10 +3,9 @@ export interface SurveyAnswer {
     answer: string
 }
 
-
 export interface AddSurveyModel {
     question: string
-    answers: SurveyAnswer
+    answers: SurveyAnswer[]
 }
 
 export interface AddSurvey {
