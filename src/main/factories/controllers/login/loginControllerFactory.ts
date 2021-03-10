@@ -1,4 +1,4 @@
-import { LoginController } from '../../../../presentation/controllers/Login/LoginController';
+import { LoginController } from '../../../../presentation/controllers/Login/Login/LoginController';
 import { Controller } from '../../../../presentation/protocols';
 import { EmailValidatorAdapter } from '../../../../infra/validators/EmailValidatorAdapter';
 import { makeDbAuthentication } from '../../useCases/authentication/dbAuthenticationFactory';
