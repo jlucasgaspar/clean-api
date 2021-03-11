@@ -5,7 +5,10 @@ import { AccessDenied } from '../errors';
 import { LoadAccountByToken } from '../../domain/useCases/LoadAccountByToken';
 
 export class AuthMiddleware implements Middleware {
-    constructor(private readonly loadAccountByToken: LoadAccountByToken) {}
+    constructor(
+        private readonly loadAccountByToken: LoadAccountByToken,
+        private readonly role?: string,
+    ) {}
 
     async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
         try {
@@ -15,7 +18,7 @@ export class AuthMiddleware implements Middleware {
                 return forbidden(new AccessDenied())
             }
 
-            const account = await this.loadAccountByToken.load(accessToken)
+            const account = await this.loadAccountByToken.load(accessToken, this.role)
 
             if (!account) {
                 return forbidden(new AccessDenied())
