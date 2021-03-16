@@ -27,7 +27,8 @@ describe('Survey Mongo Repository', () => {
 
         await sut.add({
             question: 'any_question',
-            answers: [{ answer: 'any_answer', image: 'any_image' }, { answer: 'any_answer_2' }]
+            answers: [{ answer: 'any_answer', image: 'any_image' }, { answer: 'any_answer_2' }],
+            date: new Date()
         })
 
         const survey = await surveyCollection.findOne({ question: 'any_question' })
