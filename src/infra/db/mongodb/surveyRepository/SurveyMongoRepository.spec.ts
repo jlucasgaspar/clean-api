@@ -39,6 +39,13 @@ describe('Survey Mongo Repository', () => {
     })
 
     describe('loadAll()', () => {
+        test('should load empty list', async () => {
+            const sut = makeSut()
+            const surveys = await sut.loadAll()
+            expect(surveys.length).toBe(0)
+            expect(surveys).toHaveLength(0)
+        });
+
         test('should load all surveys on success', async () => {
             await surveyCollection.insertMany([
                 {
