@@ -1,9 +1,9 @@
-import { AccountModel } from '../../../domain/models/Account'
-import { AuthModel } from '../../../domain/useCases/Authentication'
-import { HashComparer } from '../../protocols/cryptography/HashComparer'
-import { Encrypter } from '../../protocols/cryptography/Encrypter'
-import { LoadAccountByEmailRepository } from '../../protocols/db/account/LoadAccountByEmailRepository'
-import { UpdateAccessTokenRepository } from '../../protocols/db/account/UpdateAccessTokenRepository'
+import { AccountModel } from '@/domain/models/Account'
+import { AuthModel } from '@/domain/useCases/Authentication'
+import { HashComparer } from '@/data/protocols/cryptography/HashComparer'
+import { Encrypter } from '@/data/protocols/cryptography/Encrypter'
+import { LoadAccountByEmailRepository } from '@/data/protocols/db/account/LoadAccountByEmailRepository'
+import { UpdateAccessTokenRepository } from '@/data/protocols/db/account/UpdateAccessTokenRepository'
 import { DbAuthentication } from './DbAuthentication'
 
 interface SutTypes {

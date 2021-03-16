@@ -1,7 +1,7 @@
-import { noContent } from './../../../helpers/http/httpHelper';
-import { LoadSurveys } from '../../../../domain/useCases/LoadSurveys';
-import { ok, serverError } from '../../../helpers';
-import { Controller, HttpRequest, HttpResponse } from '../../../protocols';
+import { noContent } from '@/presentation/helpers/http/httpHelper';
+import { LoadSurveys } from '@/domain/useCases/LoadSurveys';
+import { ok, serverError } from '@/presentation/helpers';
+import { Controller, HttpRequest, HttpResponse } from '@/presentation/protocols';
 
 export class LoadSurveysController implements Controller {
     constructor(private readonly loadSurveys: LoadSurveys) {}

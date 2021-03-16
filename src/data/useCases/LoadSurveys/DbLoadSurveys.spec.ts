@@ -1,6 +1,6 @@
 import { DbLoadSurveys } from './DbLoadSurveys';
-import { SurveyModel } from '../../../domain/models/Survey';
-import { LoadSurveysRepository } from './../../protocols/db/survey/LoadSurveyRepository';
+import { SurveyModel } from '@/domain/models/Survey';
+import { LoadSurveysRepository } from '@/data/protocols/db/survey/LoadSurveyRepository';
 
 interface SutTypes {
     sut: DbLoadSurveys

@@ -1,6 +1,6 @@
-import { Validation } from '../../../../../presentation/protocols/Validation'
+import { Validation } from '@/presentation/protocols/Validation'
 import { makeAddSurveyValidation } from './addSurveyValidationFactory'
-import { RequiredFieldValidation, ValidationComposite } from '../../../../../validation/validators'
+import { RequiredFieldValidation, ValidationComposite } from '@/validation/validators'
 
 jest.mock('../../../../../validation/validators/validationComposite') //mesmo path do ValidationComposite
 

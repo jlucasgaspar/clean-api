@@ -1,8 +1,8 @@
-import { LoginController } from '../../../../../presentation/controllers/Login/Login/LoginController';
-import { Controller } from '../../../../../presentation/protocols';
-import { EmailValidatorAdapter } from '../../../../../infra/validators/EmailValidatorAdapter';
-import { makeDbAuthentication } from '../../../useCases/account/authentication/dbAuthenticationFactory';
-import { makeLogControllerDecorator } from '../../../decorators/logControllerDecoratorFactory';
+import { LoginController } from '@/presentation/controllers/Login/Login/LoginController';
+import { Controller } from '@/presentation/protocols';
+import { EmailValidatorAdapter } from '@/infra/validators/EmailValidatorAdapter';
+import { makeDbAuthentication } from '@/main/factories/useCases/account/authentication/dbAuthenticationFactory';
+import { makeLogControllerDecorator } from '@/main/factories/decorators/logControllerDecoratorFactory';
 
 export const makeLoginController = (): Controller => {
     const emailValidator = new EmailValidatorAdapter()
