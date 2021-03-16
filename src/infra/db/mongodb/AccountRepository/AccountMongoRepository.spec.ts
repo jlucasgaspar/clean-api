@@ -92,4 +92,35 @@ describe('Account Mongo Repository', () => {
         })
     });
 
+    describe('loadByToken()', () => {
+        test('Should return an account on loadByToken without role', async () => {
+            const sut = makeSut()
+
+            await accountCollection.insertOne({
+                email: 'any_email@mail.com',
+                name: 'any_name',
+                password: 'any_password',
+                accessToken: 'any_token'
+            })
+
+            const account = await sut.loadByToken('any_token'/* , 'any_role' */)
+
+            expect(account).toBeTruthy()
+        })
+
+        test('Should return an account on loadByToken with role', async () => {
+            const sut = makeSut()
+
+            await accountCollection.insertOne({
+                email: 'any_email@mail.com',
+                name: 'any_name',
+                password: 'any_password',
+                accessToken: 'any_token'
+            })
+
+            const account = await sut.loadByToken('any_token', 'any_role')
+
+            expect(account).toBeTruthy()
+        })
+    });
 })
