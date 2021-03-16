@@ -2,7 +2,7 @@ import Mockdate from 'mockdate'
 import { LoadSurveysController } from './LoadSurveysController';
 import { LoadSurveys } from './../../../../domain/useCases/LoadSurveys';
 import { SurveyModel } from './../../../../domain/models/Survey';
-import { ok, serverError } from '../../../helpers';
+import { noContent, ok, serverError } from '../../../helpers';
 
 interface SutTypes {
     loadSurveysStub: LoadSurveys
@@ -62,6 +62,13 @@ describe('LoadSurveys Controller', () => {
         jest.spyOn(loadSurveysStub, 'load').mockReturnValueOnce(new Promise((resolve, reject) => reject(new Error())))
         const httpResponse = await sut.handle({})
         expect(httpResponse).toEqual(serverError(new Error()))
+    });
+
+    test('should return 204 if LoadSurveys returns empty', async () => {
+        const { sut, loadSurveysStub } = makeSut()
+        jest.spyOn(loadSurveysStub, 'load').mockReturnValueOnce(Promise.resolve([]))
+        const httpResponse = await sut.handle({})
+        expect(httpResponse).toEqual(noContent())
     });
 
     test('should return 200 on success', async () => {
