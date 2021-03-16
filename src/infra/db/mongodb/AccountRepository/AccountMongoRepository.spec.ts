@@ -115,7 +115,8 @@ describe('Account Mongo Repository', () => {
                 email: 'any_email@mail.com',
                 name: 'any_name',
                 password: 'any_password',
-                accessToken: 'any_token'
+                accessToken: 'any_token',
+                role: 'any_role'
             })
 
             const account = await sut.loadByToken('any_token', 'any_role')
