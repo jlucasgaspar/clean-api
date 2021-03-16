@@ -1,7 +1,12 @@
 import { DbLoadAccountByToken } from './DbLoadAccountByToken';
 import { Decrypter } from '../../protocols/cryptography/Decrypter';
 
-const makeDecrypterStub = () => {
+interface SutTypes {
+    sut: DbLoadAccountByToken
+    decrypterStub: Decrypter
+}
+
+const makeDecrypterStub = (): Decrypter => {
     class DecrypterSyub implements Decrypter {
         async decrypt (value: string): Promise<string> {
             return Promise.resolve('any_value')
@@ -10,7 +15,7 @@ const makeDecrypterStub = () => {
     return new DecrypterSyub()
 }
 
-const makeSut = () => {
+const makeSut = (): SutTypes => {
     const decrypterStub = makeDecrypterStub()
     const sut = new DbLoadAccountByToken(decrypterStub)
 
